@@ -11,19 +11,20 @@
     version: '3.3
     services:
       transmission-openvpn:
+        restart: always
         cap_add:
           - NET_ADMIN
         image: haugene/transmission-openvpn
         env_file: ./.env
-      volumes:
-        - ./data:/data
-        - ./config:/config
-      logging:
-        driver: json-file
-        options:
-          max-size: 10m
-      ports:
-        - 9091:9091
+        volumes:
+          - ./data:/data
+          - ./config:/config
+        logging:
+          driver: json-file
+          options:
+            max-size: 10m
+        ports:
+          - 9091:9091
 ***.env***
 
     OPENVPN_USERNAME=<user>
